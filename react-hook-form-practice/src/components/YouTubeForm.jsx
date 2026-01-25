@@ -3,13 +3,17 @@ import { DevTool } from "@hookform/devtools";
 
 export const YouTubeForm = () => {
     const form = useForm();
-    const {register, control} = form;
+    const {register, control, handleSubmit} = form;
+
+    const onSubmit = (data) => {
+        console.log("form submitted", data);
+    };
 
     return (
         <div>
             <h1>YouTube Form</h1>
 
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="username">Username</label>
                 <input type="text" id="username" {...register("username")} /*name={name} ref={ref} onChange={onChange} onBlur={onBlur}*/ />
 
@@ -19,7 +23,7 @@ export const YouTubeForm = () => {
                 <label htmlFor="channel">Channel</label>
                 <input type="text" id="channel" {...register("channel")}/>
 
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <DevTool control={control}/>
         </div>
