@@ -2,7 +2,13 @@ import {useForm} from 'react-hook-form';
 import { DevTool } from "@hookform/devtools";
 
 export const YouTubeForm = () => {
-    const form = useForm();
+    const form = useForm({
+        defaultValues: {
+            username: "",
+            email: "",
+            channel: ""
+        }
+    });
     const {register, control, handleSubmit, formState} = form;
 
     const {errors} = formState;
