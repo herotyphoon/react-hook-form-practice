@@ -6,13 +6,16 @@ export const YouTubeForm = () => {
         defaultValues: {
             username: "",
             email: "",
-            channel: ""
+            channel: "",
+            social: {
+                linkedin: "",
+                github: "",
+            }
         }
     });
     const {register, control, handleSubmit, formState} = form;
 
     const {errors} = formState;
-    console.log(formState);
 
     const onSubmit = (data) => {
         console.log("form submitted", data);
@@ -70,6 +73,16 @@ export const YouTubeForm = () => {
                         },
                     })} />
                     <p className={"error"}>{errors.channel?.message}</p>
+                </div>
+
+                <div className="form-control">
+                    <label htmlFor="linkedin">Linkedin</label>
+                    <input type="text" id="linkedin" {...register("social.linkedin")} />
+                </div>
+
+                <div className="form-control">
+                    <label htmlFor="github">GitHub</label>
+                    <input type="text" id="github" {...register("social.github")} />
                 </div>
 
                 <button type="submit">Submit</button>
