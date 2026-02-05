@@ -134,7 +134,9 @@ export const YouTubeForm = () => {
 
                 <div className="form-control">
                     <label htmlFor="linkedin">Linkedin</label>
-                    <input type="text" id="linkedin" {...register("social.linkedin")} />
+                    <input type="text" id="linkedin" {...register("social.linkedin", {
+                        disabled: watch("channel") === "",
+                    })} />
                 </div>
 
                 <div className="form-control">
