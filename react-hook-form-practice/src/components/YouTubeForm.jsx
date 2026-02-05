@@ -18,7 +18,7 @@ export const YouTubeForm = () => {
             phNumbers: [{ number: "" }],
         }
     });
-    const {register, control, handleSubmit, formState, watch, getValues} = form;
+    const {register, control, handleSubmit, formState, watch, getValues, setValue} = form;
 
     const {errors} = formState;
 
@@ -31,16 +31,24 @@ export const YouTubeForm = () => {
         console.log("form submitted", data);
     };
 
-    useEffect(() => {
-        const subscription = watch((value) =>
-            console.log(value)
-        );
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    const handleSetValue = () => {
+        setValue("username", "", {
+            shouldDirty: true,
+            shouldTouch: true,
+            shouldValidate: true,
+        });
+    }
 
-    console.log(watch("username"));
-    console.log(watch(["email", "username"]));
-    console.log(watch());
+    // useEffect(() => {
+    //     const subscription = watch((value) =>
+    //         console.log(value)
+    //     );
+    //     return () => subscription.unsubscribe();
+    // }, [watch]);
+
+    // console.log(watch("username"));
+    // console.log(watch(["email", "username"]));
+    // console.log(watch());
 
     return (
         <div>
@@ -170,10 +178,11 @@ export const YouTubeForm = () => {
                         </button>
                     </div>
                 </div>
-
+{/* 
                 <button type="button" onClick={() => console.log("Get Values", getValues())}>Get Values</button>
                 <button type="button" onClick={() => console.log(getValues("username"))}>Get Username Value</button>
-                <button type="button" onClick={() => console.log(getValues(["username", "email"]))}>Get Username and Email Values</button>
+                <button type="button" onClick={() => console.log(getValues(["username", "email"]))}>Get Username and Email Values</button> */}
+                <button type="button" onClick={handleSetValue}>Set Username</button>
 
                 <button type="submit">Submit</button>
             </form>
