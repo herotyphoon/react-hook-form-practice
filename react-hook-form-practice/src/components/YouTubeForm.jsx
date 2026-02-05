@@ -18,7 +18,7 @@ export const YouTubeForm = () => {
             phNumbers: [{ number: "" }],
         }
     });
-    const {register, control, handleSubmit, formState, watch} = form;
+    const {register, control, handleSubmit, formState, watch, getValues} = form;
 
     const {errors} = formState;
 
@@ -170,6 +170,10 @@ export const YouTubeForm = () => {
                         </button>
                     </div>
                 </div>
+
+                <button type="button" onClick={() => console.log("Get Values", getValues())}>Get Values</button>
+                <button type="button" onClick={() => console.log(getValues("username"))}>Get Username Value</button>
+                <button type="button" onClick={() => console.log(getValues(["username", "email"]))}>Get Username and Email Values</button>
 
                 <button type="submit">Submit</button>
             </form>
