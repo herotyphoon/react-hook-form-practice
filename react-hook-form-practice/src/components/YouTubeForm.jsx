@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from "@hookform/devtools";
 
@@ -17,7 +18,7 @@ export const YouTubeForm = () => {
             phNumbers: [{ number: "" }],
         }
     });
-    const {register, control, handleSubmit, formState} = form;
+    const {register, control, handleSubmit, formState, watch} = form;
 
     const {errors} = formState;
 
@@ -29,6 +30,17 @@ export const YouTubeForm = () => {
     const onSubmit = (data) => {
         console.log("form submitted", data);
     };
+
+    useEffect(() => {
+        const subscription = watch((value) =>
+            console.log(value)
+        );
+        return () => subscription.unsubscribe();
+    }, [watch]);
+
+    console.log(watch("username"));
+    console.log(watch(["email", "username"]));
+    console.log(watch());
 
     return (
         <div>
