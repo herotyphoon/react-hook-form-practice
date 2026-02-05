@@ -1,4 +1,4 @@
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { DevTool } from "@hookform/devtools";
 
 export const YouTubeForm = () => {
@@ -10,7 +10,8 @@ export const YouTubeForm = () => {
             social: {
                 linkedin: "",
                 github: "",
-            }
+            },
+            phoneNumbers: ["", ""]
         }
     });
     const {register, control, handleSubmit, formState} = form;
@@ -83,6 +84,16 @@ export const YouTubeForm = () => {
                 <div className="form-control">
                     <label htmlFor="github">GitHub</label>
                     <input type="text" id="github" {...register("social.github")} />
+                </div>
+
+                <div className="form-control">
+                    <label htmlFor="primary-phone">Primary Phone</label>
+                    <input type="text" id="primary-phone" {...register("phoneNumbers[0]")} />
+                </div>
+
+                <div className="form-control">
+                    <label htmlFor="secondary-phone">Secondary Phone</label>
+                    <input type="text" id="secondary-phone" {...register("phoneNumbers.1")} />
                 </div>
 
                 <button type="submit">Submit</button>
