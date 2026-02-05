@@ -20,7 +20,7 @@ export const YouTubeForm = () => {
     });
     const {register, control, handleSubmit, formState, watch, getValues, setValue} = form;
 
-    const {errors} = formState;
+    const {errors, touchedFields, dirtyFields, isDirty} = formState;
 
     const { fields, append, remove } = useFieldArray({
         name: "phNumbers",
@@ -49,6 +49,10 @@ export const YouTubeForm = () => {
     // console.log(watch("username"));
     // console.log(watch(["email", "username"]));
     // console.log(watch());
+
+    console.log(touchedFields);
+    console.log(dirtyFields);
+    console.log(isDirty);
 
     return (
         <div>
