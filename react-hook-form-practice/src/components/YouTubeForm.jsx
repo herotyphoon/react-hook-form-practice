@@ -8,7 +8,7 @@ export const YouTubeForm = () => {
             username: "",
             email: "",
             age: 0,
-            DOV: new Date(),
+            dob: null,
             channel: "",
             social: {
                 linkedin: "",
@@ -20,7 +20,7 @@ export const YouTubeForm = () => {
     });
     const {register, control, handleSubmit, formState, watch, getValues, setValue} = form;
 
-    const {errors, touchedFields, dirtyFields, isDirty} = formState;
+    const {errors, touchedFields, dirtyFields, isDirty, isValid} = formState;
 
     const { fields, append, remove } = useFieldArray({
         name: "phNumbers",
@@ -54,9 +54,10 @@ export const YouTubeForm = () => {
     // console.log(watch(["email", "username"]));
     // console.log(watch());
 
-    console.log(touchedFields);
-    console.log(dirtyFields);
-    console.log(isDirty);
+    // console.log(touchedFields);
+    // console.log(dirtyFields);
+    console.log("Dirty: ", isDirty);
+    console.log("Valid: ", isValid);
 
     return (
         <div>
@@ -192,9 +193,9 @@ export const YouTubeForm = () => {
                 <button type="button" onClick={() => console.log("Get Values", getValues())}>Get Values</button>
                 <button type="button" onClick={() => console.log(getValues("username"))}>Get Username Value</button>
                 <button type="button" onClick={() => console.log(getValues(["username", "email"]))}>Get Username and Email Values</button> */}
-                <button type="button" onClick={handleSetValue}>Set Username</button>
+                {/* <button type="button" onClick={handleSetValue}>Set Username</button> */}
 
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={!isDirty || !isValid}>Submit</button>
             </form>
             <DevTool control={control}/>
         </div>
