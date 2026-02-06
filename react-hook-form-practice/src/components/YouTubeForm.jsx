@@ -31,6 +31,10 @@ export const YouTubeForm = () => {
         console.log("form submitted", data);
     };
 
+    const onError = (error) => {
+        console.log("Submit error: ", error)
+    }
+
     const handleSetValue = () => {
         setValue("username", "", {
             shouldDirty: true,
@@ -58,7 +62,7 @@ export const YouTubeForm = () => {
         <div>
             <h1>YouTube Form</h1>
 
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
                 <div className="form-control">
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" {...register("username", {
