@@ -18,7 +18,7 @@ export const YouTubeForm = () => {
             phNumbers: [{ number: "" }],
         }
     });
-    const {register, control, handleSubmit, formState, watch, getValues, setValue} = form;
+    const {register, control, handleSubmit, formState, watch, getValues, setValue, reset} = form;
 
     const {errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount} = formState;
 
@@ -42,6 +42,12 @@ export const YouTubeForm = () => {
             shouldValidate: true,
         });
     }
+
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful, reset])
 
     // useEffect(() => {
     //     const subscription = watch((value) =>
@@ -160,7 +166,7 @@ export const YouTubeForm = () => {
                     <input type="text" id="secondary-phone" {...register("phoneNumbers.1")} />
                 </div>
 
-                <div>
+                {/* <div>
                     <label>List of Phone Numbers</label>
                     <div>
                         {fields.map((field, index) => (
@@ -189,7 +195,7 @@ export const YouTubeForm = () => {
                         Add Phone Number
                         </button>
                     </div>
-                </div>
+                </div> */}
 {/* 
                 <button type="button" onClick={() => console.log("Get Values", getValues())}>Get Values</button>
                 <button type="button" onClick={() => console.log(getValues("username"))}>Get Username Value</button>
@@ -197,6 +203,9 @@ export const YouTubeForm = () => {
                 {/* <button type="button" onClick={handleSetValue}>Set Username</button> */}
 
                 <button type="submit" disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
+                <br />
+                <br />
+                <button type="button" onClick={() => reset()}>Reset</button>
             </form>
             <DevTool control={control}/>
         </div>
