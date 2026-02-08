@@ -103,6 +103,11 @@ export const YouTubeForm = () => {
                                 return (
                                     !fieldValue.endsWith("baddomain.com") || "This domain is not supported"
                                 )
+                            },
+                            emailAvailable: async (fieldValue) => {
+                                const res = await fetch(`https://jsonplaceholder.typicode.com/users?email=${fieldValue}`);
+                                const data = await res.json();
+                                return data.length === 0 || "Email already exists"
                             }
                         }
                     })} />
