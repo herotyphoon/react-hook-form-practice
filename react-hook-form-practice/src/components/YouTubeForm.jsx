@@ -16,7 +16,8 @@ export const YouTubeForm = () => {
             },
             phoneNumbers: ["", ""],
             phNumbers: [{ number: "" }],
-        }
+        },
+        mode: "onTouched" // "onBlur" // "onChange" // "all"
     });
     const {register, control, handleSubmit, formState, watch, getValues, setValue, reset} = form;
 
